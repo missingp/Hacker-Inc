@@ -1,0 +1,38 @@
+{
+  "technologies": [
+    {
+      "id": "TRANS_PHISHING",
+      "name": "钓鱼邮件",
+      "description": "通过邮件附件传播，小幅提升基础传播概率。",
+      "category": "TRANSMISSION",
+      "cost": 10,
+      "prerequisites": []
+    },
+    {
+      "id": "TRANS_USB",
+      "name": "U盘感染",
+      "description": "解锁通过U盘在隔离网络中传播的能力。",
+      "category": "TRANSMISSION",
+      "cost": 25,
+      "prerequisites": [
+        "TRANS_PHISHING"
+      ]
+    },
+    {
+      "id": "STEALTH_POLY",
+      "name": "多态变形",
+      "description": "病毒代码每次复制都变化，降低被发现的几率。",
+      "category": "STEALTH",
+      "cost": 20,
+      "prerequisites": []
+    },
+    {
+      "id": "PAYLOAD_BOTNET",
+      "name": "僵尸网络化",
+      "description": "解锁将被感染的PC转化为僵尸网络的能力。",
+      "category": "PAYLOAD",
+      "cost": 30,
+      "prerequisites": []
+    }
+  ]
+}
