@@ -93,6 +93,8 @@ class GameState:
     research_task: Optional[ResearchTask] = None
     selecting_archetype: bool = True
     archetype_selection_index: int = 0
+    tech_view: bool = False
+    show_help_popup: bool = False
 
     def total_influence_percent(self) -> float:
         if not self.regions:

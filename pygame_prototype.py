@@ -98,7 +98,23 @@ def main() -> None:
                         state.add_message(f"当前身份：{selected.name} - {selected.description}")
                     continue
 
-                if 1:#if state.tech_view:
+                # 帮助弹窗为模态：按 '?' 打开/关闭，ESC 也可关闭
+                if event.type == pygame.KEYDOWN and getattr(event, "unicode", "") == "?":
+                    state.show_help_popup = not state.show_help_popup
+                    if state.show_help_popup:
+                        state.add_message("帮助：按 ? 关闭。")
+                    else:
+                        state.add_message("关闭帮助。")
+                    continue
+
+                if state.show_help_popup:
+                    # 在弹窗打开时只响应关闭（上面通过 '?' 切换），这里也允许 ESC 关闭
+                    if event.key == pygame.K_ESCAPE:
+                        state.show_help_popup = False
+                        state.add_message("关闭帮助。")
+                    continue
+
+                if state.tech_view == True:
                     if event.key in (pygame.K_ESCAPE, pygame.K_t):
                         state.tech_view = False
                         state.add_message("返回作战界面。")
@@ -134,6 +150,9 @@ def main() -> None:
                     perform_attack(state)
                 elif event.key == pygame.K_t:
                     screen = show_tech_screen(state, font) or screen
+                    # 关闭独立科技窗口时确保弹窗标记为关闭
+                    state.tech_view = False
+                    state.show_help_popup = False
                     if not state.running:
                         break
                     background = load_map_surface()
